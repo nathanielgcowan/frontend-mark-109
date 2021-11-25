@@ -1,23 +1,10 @@
 import React from 'react';
 import { Link, Route, Switch } from "react-router-dom";
-
-const Home = () => (
-  <div>
-    <h2>Home</h2>
-  </div>
-);
-
-const Category = () => (
-  <div>
-    <h2>Category</h2>
-  </div>
-);
-
-const Products = () => (
-  <div>
-    <h2>Products</h2>
-  </div>
-);
+import Home from './components/Home';
+import Pokedex from './components/Pokedex';
+import MyPokemon from './components/MyPokemon';
+import TallGrass from './components/TallGrass';
+import ViewPokemon from './components/ViewPokemon';
 
 export default function App() {
   return (
@@ -28,18 +15,25 @@ export default function App() {
             <Link to="/">Home</Link>
           </li>
           <li>
-            <Link to="/category">Category</Link>
+            <Link to="/pokedex">Pokedex</Link>
           </li>
           <li>
-            <Link to="/products">Products</Link>
+            <Link to="/mypokemon">My Pokemon</Link>
+          </li>
+          <li>
+            <Link to="/tallgrass">Tall Grass</Link>
           </li>
         </ul>
       </nav>
 
       { /* Route components are rendered if the path prop matches the current URL */}
-      <Route path="/"><Home /></Route>
-      <Route path="/category"><Category /></Route>
-      <Route path="/products"><Products /></Route>
+      <Switch>
+        <Route exact path="/"><Home /></Route>
+        <Route exact path="/pokedex"><Pokedex /></Route>
+        <Route exact path="/pokedex/:id" render={props => (<ViewPokemon pokeId={props.match.params.id} />)} />
+        <Route exact path="/mypokemon"><MyPokemon /></Route>
+        <Route exact path="/tallgrass"><TallGrass /></Route>
+      </Switch>
     </div>
   );
 }
