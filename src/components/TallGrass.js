@@ -5,17 +5,25 @@ import { fetchPokemon, fetchSinglePokemon } from '../actions/pokeActions'
 class TallGrass extends Component {
     constructor(props){
         super(props)
+        this.state = {
+            name: '',
+            number: '',
+            ability: ''
+        }
+        // Handle the page
         this.walkInGrass = this.walkInGrass.bind(this);
         this.handleThrowPokeBall = this.handleThrowPokeBall.bind(this);
     }
+    // Lifecycle
     UNSAFE_componentWillMount(){
         this.props.fetchPokemon();
         this.props.fetchSinglePokemon(Math.floor(Math.random()*150));
     }
-
+    // Handle the page
     walkInGrass(event) { this.props.fetchSinglePokemon(Math.floor(Math.random()*150)); } // get a random pokemon
     handleThrowPokeBall(event) { console.log('trow ball') } // Try and catch a pokemon
 
+    // Rendering
     render() {
         // console.log(this.props.singleMon)
         if(!this.props.singleMon.id) {
@@ -45,9 +53,8 @@ class TallGrass extends Component {
     }
 }
 
-const mapStateToProps = state => ({
-    pokemon: state.combineRed.pokemon,
-    singleMon: state.combineRed.singleMon
-});
+// State
+const mapStateToProps = state => ({ pokemon: state.combineRed.pokemon, singleMon: state.combineRed.singleMon });
 
+// Export
 export default connect(mapStateToProps, { fetchPokemon, fetchSinglePokemon })(TallGrass);
