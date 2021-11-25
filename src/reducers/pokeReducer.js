@@ -1,5 +1,5 @@
 
-const initialState = { pokemon: [] };
+const intitialState = { pokemon: [] };
 function pokeReducer(state = intitialState, action) {
     switch(action.type) {
         default:
@@ -7,4 +7,4 @@ function pokeReducer(state = intitialState, action) {
     }
 }
 
-export default pokemonReducer;
+export default pokeReducer;

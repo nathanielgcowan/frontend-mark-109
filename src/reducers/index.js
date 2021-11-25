@@ -1,6 +1,6 @@
 import { combineReducers } from "redux";
-import bandsReducer from './bandsReducers';
+import pokeReducer from './pokeReducer';
 
 export default combineReducers ({
-    combineRed: bandsReducer
+    combineRed: pokeReducer
 });
