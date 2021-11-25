@@ -23,7 +23,7 @@ class ViewPokemon extends Component {
                     <tr>
                         <td>{this.props.singleMon.name}</td>
                         <td>{this.props.singleMon.id}</td>
-                        <td><img src={this.props.singleMon.sprites.back_default} /></td>
+                        <td><img src={this.props.singleMon.sprites.back_default} alt=""/></td>
                         <td>{this.props.singleMon.types[0].type.name}</td>
                     </tr>
                 </table>
