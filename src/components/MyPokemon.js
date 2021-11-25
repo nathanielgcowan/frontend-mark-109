@@ -14,6 +14,9 @@ class MyPokemon extends Component {
             return (
                 <div key={pokemon.id}>
                     <p>{pokemon.name}</p>
+                    <img src={pokemon.image} alt=""/>
+                    <p>{pokemon.pokemontype}</p>
+
                 </div>
             );
         })

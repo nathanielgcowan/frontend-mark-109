@@ -1,4 +1,4 @@
-import { FETCH_POKEMON, FETCH_MY_POKEMON, FETCH_SINGLE_POKEMON } from '../actions/types';
+import { FETCH_POKEMON, FETCH_MY_POKEMON, FETCH_SINGLE_POKEMON, CATCH_POKEMON } from '../actions/types';
 const intitialState = { pokemon: [], mypokemon: [], singleMon: {}};
 function pokeReducer(state = intitialState, action) {
     switch(action.type) {
@@ -11,6 +11,11 @@ function pokeReducer(state = intitialState, action) {
         case FETCH_SINGLE_POKEMON:
             let singlepokemon = action.payload;
             return { ...state, singleMon:singlepokemon };
+        case CATCH_POKEMON:
+            let new_pokemon = action.payload;
+            let myNewPokemonList = state.mypokemon;
+            myNewPokemonList.push(new_pokemon);
+            return { ...state, mypokemon: myNewPokemonList }
         default:
             return state;
     }

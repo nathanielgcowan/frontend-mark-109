@@ -1,18 +1,19 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import { fetchPokemon, fetchSinglePokemon } from '../actions/pokeActions'
+import { fetchPokemon, fetchSinglePokemon, newPokemon } from '../actions/pokeActions'
 
 class TallGrass extends Component {
     constructor(props){
         super(props)
         this.state = {
             name: '',
-            number: '',
-            ability: ''
+            image: '',
+            pokemontype: ''
         }
         // Handle the page
         this.walkInGrass = this.walkInGrass.bind(this);
         this.handleThrowPokeBall = this.handleThrowPokeBall.bind(this);
+        this.onSubmit = this.onSubmit.bind(this);
     }
     // Lifecycle
     UNSAFE_componentWillMount(){
@@ -22,6 +23,20 @@ class TallGrass extends Component {
     // Handle the page
     walkInGrass(event) { this.props.fetchSinglePokemon(Math.floor(Math.random()*150)); } // get a random pokemon
     handleThrowPokeBall(event) { console.log('trow ball') } // Try and catch a pokemon
+    
+    // Submit Form
+    onSubmit(e) {
+        e.preventDefault();
+        console.log(this.state);
+        const pokemon = {
+            name: this.props.singleMon.name,
+            image: this.props.singleMon.sprites.front_default,
+            pokemontype: this.props.singleMon.types[0].type.name
+        };
+        console.log(pokemon)
+        // this.walkInGrass();
+        this.props.newPokemon(pokemon);
+    }
 
     // Rendering
     render() {
@@ -42,11 +57,12 @@ class TallGrass extends Component {
             return(
                 <div>
                     <button onClick={this.walkInGrass}>🌿</button>
-                        <div>
-                            <p><img src={this.props.singleMon.sprites.front_default} alt=""/></p>{' '}
-                            <p>Name: {this.props.singleMon.name}</p>{' '}
-                            <p>Type: {this.props.singleMon.types[0].type.name}</p>
-                        </div>
+                    <form onSubmit={this.onSubmit}>
+                        <button type="submit">Catch Pokemon</button>
+                        <p><img src={this.props.singleMon.sprites.front_default} alt=""/></p>{' '}
+                        <p>Name: { this.props.singleMon.name }</p>{' '}
+                        <p>Type: { this.props.singleMon.types[0].type.name }</p>
+                    </form>
                 </div>
             );
         }
@@ -54,7 +70,8 @@ class TallGrass extends Component {
 }
 
 // State
-const mapStateToProps = state => ({ pokemon: state.combineRed.pokemon, singleMon: state.combineRed.singleMon });
+const mapStateToProps = state => ({ 
+    pokemon: state.combineRed.pokemon, singleMon: state.combineRed.singleMon});
 
 // Export
-export default connect(mapStateToProps, { fetchPokemon, fetchSinglePokemon })(TallGrass);
+export default connect(mapStateToProps, { fetchPokemon, fetchSinglePokemon, newPokemon })(TallGrass);
