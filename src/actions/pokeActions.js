@@ -1,4 +1,4 @@
-import { FETCH_POKEMON, FETCH_MY_POKEMON, FETCH_SINGLE_POKEMON, CATCH_POKEMON } from './types';
+import { FETCH_POKEMON, FETCH_MY_POKEMON, FETCH_SINGLE_POKEMON, CATCH_POKEMON, DELETE_POKEMON } from './types';
 
 export const fetchPokemon = () => dispatch => {
     fetch('https://pokeapi.co/api/v2/pokemon?limit=50&offset=150')
@@ -32,6 +32,25 @@ export const newPokemon = pokemonData => dispatch => {
         console.log(pokemon)
         return dispatch({
             type: CATCH_POKEMON,
+            payload: pokemon
+        })
+    }
+    );
+};
+
+export const deletePokemon = id => dispatch => {
+    console.log(dispatch)
+    fetch(`http://localhost:3001/mypokemons/${id}`, {
+        method: 'DELETE',
+        headers: {
+            'Content-Type': 'application/json'
+        },
+        body: JSON.stringify({id})
+    })
+    .then(response => response.json())
+    .then(pokemon => {
+        return dispatch({
+            type: DELETE_POKEMON,
             payload: pokemon
         })
     }

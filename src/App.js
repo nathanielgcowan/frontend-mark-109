@@ -5,27 +5,13 @@ import Pokedex from './components/Pokedex';
 import MyPokemon from './components/MyPokemon';
 import TallGrass from './components/TallGrass';
 import ViewPokemon from './components/ViewPokemon';
+import Navigation from './theseComponents/Navigation';
+import "./App.css"
 
 export default function App() {
   return (
     <div>
-      <nav className="navbar navbar-light">
-        <ul className="nav navbar-nav">
-          <li>
-            <Link to="/">Home</Link>
-          </li>
-          <li>
-            <Link to="/pokedex">Pokedex</Link>
-          </li>
-          <li>
-            <Link to="/mypokemon">My Pokemon</Link>
-          </li>
-          <li>
-            <Link to="/tallgrass">Tall Grass</Link>
-          </li>
-        </ul>
-      </nav>
-
+      <Navigation />
       { /* Route components are rendered if the path prop matches the current URL */}
       <Switch>
         <Route exact path="/"><Home /></Route>

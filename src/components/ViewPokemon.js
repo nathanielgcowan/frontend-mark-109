@@ -1,6 +1,7 @@
 import React, { Component } from 'react'
 import { connect } from 'react-redux';
 import { fetchSinglePokemon } from '../actions/pokeActions';
+import { Link } from 'react-router-dom';
 
 class ViewPokemon extends Component {
     componentWillMount() {
@@ -10,23 +11,40 @@ class ViewPokemon extends Component {
         console.log(this.props.singleMon)
         if(!this.props.singleMon.id) {
             return <p>"Not found "</p>
-        } 
+        }
+        // { this.props.singleMon.held_items[0].item.name }
         return(
             <div>
                 <table>
-                    <tr>
-                        <th>Name</th>
-                        <th>ID</th>
-                        <th>Photo</th>
-                        <th>Type</th>
-                    </tr>
-                    <tr>
-                        <td>{this.props.singleMon.name}</td>
-                        <td>{this.props.singleMon.id}</td>
-                        <td><img src={this.props.singleMon.sprites.back_default} alt=""/></td>
-                        <td>{this.props.singleMon.types[0].type.name}</td>
-                    </tr>
+                <tr>
+                    <td><img src={this.props.singleMon.sprites.front_default} alt=""/></td>
+                </tr>
+                <tr>
+                    <th>Name</th>
+                    <th>Type</th>
+                    <th>Ability</th>
+                    <th>Move</th>
+                    <th>Base Experience</th>
+                </tr>
+                <tr>
+                    <td>{this.props.singleMon.name}</td>
+                    <td>{this.props.singleMon.types[0].type.name}</td>
+                    <td>{ this.props.singleMon.abilities[0].ability.name }</td>
+                    <td> { this.props.singleMon.moves[0].move.name }</td>
+                    <td> { this.props.singleMon.base_experience }</td>
+                </tr>
+                <tr>
+                    <th>Form</th>
+                    <th>Version</th>
+                    <th>Height</th>
+                </tr>
+                <tr>
+                    <td> { this.props.singleMon.forms[0].name }</td>
+                    <td> { this.props.singleMon.game_indices[0].version.name }</td>
+                    <td> { this.props.singleMon.height }</td>
+                </tr>
                 </table>
+                <Link className="Nav__" to="/pokedex">Pokedex</Link>
             </div>
         );
     }

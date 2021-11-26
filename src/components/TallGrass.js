@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { fetchPokemon, fetchSinglePokemon, newPokemon } from '../actions/pokeActions'
+import Button from './Button';
 
 class TallGrass extends Component {
     constructor(props){
@@ -23,42 +24,36 @@ class TallGrass extends Component {
     // Handle the page
     walkInGrass(event) { this.props.fetchSinglePokemon(Math.floor(Math.random()*150)); } // get a random pokemon
     handleThrowPokeBall(event) { console.log('trow ball') } // Try and catch a pokemon
-    
+
     // Submit Form
     onSubmit(e) {
         e.preventDefault();
         console.log(this.state);
-        const pokemon = {
-            name: this.props.singleMon.name,
-            image: this.props.singleMon.sprites.front_default,
-            pokemontype: this.props.singleMon.types[0].type.name
+        const pokemon = { name: this.props.singleMon.name, image: this.props.singleMon.sprites.front_default, pokemontype: this.props.singleMon.types[0].type.name
         };
-        console.log(pokemon)
-        // this.walkInGrass();
+        console.log(pokemon) // this.walkInGrass(); 
         this.props.newPokemon(pokemon);
+        this.props.fetchSinglePokemon(Math.floor(Math.random()*150));
     }
 
     // Rendering
     render() {
         // console.log(this.props.singleMon)
-        if(!this.props.singleMon.id) {
-            return <p>"Not found "</p>
-        }
-        let first = Math.floor(Math.random()*150);
-        let second = Math.floor(Math.random()*150);
-        if(first >= second ){
+        if(!this.props.singleMon.id) { return <p>"Not found "</p> }
+
+        if((Math.floor(Math.random()*150)) >= (Math.floor(Math.random()*150))) {
             return (
                 <div>
-                    <button onClick={this.walkInGrass}>🌿</button>
+                    <Button onClick={this.walkInGrass}>🌿</Button>
                     <p>🌿Tall Grass. Try Again🌿</p>
                 </div>
             )
         } else {
             return(
                 <div>
-                    <button onClick={this.walkInGrass}>🌿</button>
-                    <form onSubmit={this.onSubmit}>
-                        <button type="submit">Catch Pokemon</button>
+                    <Button onClick={this.walkInGrass}>🌿</Button>
+                    <form>
+                        <Button onClick={this.onSubmit}>Catch Pokemon</Button>
                         <p><img src={this.props.singleMon.sprites.front_default} alt=""/></p>{' '}
                         <p>Name: { this.props.singleMon.name }</p>{' '}
                         <p>Type: { this.props.singleMon.types[0].type.name }</p>
@@ -66,6 +61,7 @@ class TallGrass extends Component {
                 </div>
             );
         }
+        
     }
 }
 

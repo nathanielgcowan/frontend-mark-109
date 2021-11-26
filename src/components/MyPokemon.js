@@ -1,29 +1,27 @@
 import React, { Component } from 'react';
-// import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
-import { fetchMyPokemon } from '../actions/pokeActions'
+import { withRouter } from 'react-router';
+import { fetchMyPokemon, deletePokemon } from '../actions/pokeActions';
+import PokemonCard from './PokemonCard';
 
 class MyPokemon extends Component {
     componentWillMount(){
         this.props.fetchMyPokemon();
     }
-
+    
     render() {
-        console.log(this.props.mypokemon)
+
         let listOfPokemon = this.props.mypokemon.map( pokemon => {
             return (
-                <div key={pokemon.id}>
-                    <p>{pokemon.name}</p>
-                    <img src={pokemon.image} alt=""/>
-                    <p>{pokemon.pokemontype}</p>
-
-                </div>
+                <PokemonCard key={pokemon.id} pokemon={pokemon} onDelete={this.props.deletePokemon }/>
             );
         })
         return (
             <div>
-                <div>Pokedex</div>
-                <p>{ listOfPokemon }</p>
+                <p>Pokedex</p>
+                <div className="container" style={{display:"flex", flexWrap:"wrap" }}>
+                { listOfPokemon }
+                </div>
             </div>
         );
     }
@@ -33,4 +31,4 @@ const mapStateToProps = state => ({
     mypokemon: state.combineRed.mypokemon
 });
 
-export default connect(mapStateToProps, { fetchMyPokemon })(MyPokemon);
+export default connect(mapStateToProps, { fetchMyPokemon, deletePokemon })(MyPokemon);

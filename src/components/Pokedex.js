@@ -15,7 +15,6 @@ class Pokedex extends Component {
             return <p>"Not found "</p>
         }
         let listOfPokemon = this.props.pokemon.results.map( pokemon => {
-            console.log(pokemon)
             const urlarray = pokemon.url.split("/")
             const id = urlarray[urlarray.length-2]
             console.log(id)

@@ -1,4 +1,4 @@
-import { FETCH_POKEMON, FETCH_MY_POKEMON, FETCH_SINGLE_POKEMON, CATCH_POKEMON } from '../actions/types';
+import { FETCH_POKEMON, FETCH_MY_POKEMON, FETCH_SINGLE_POKEMON, CATCH_POKEMON, DELETE_POKEMON } from '../actions/types';
 const intitialState = { pokemon: [], mypokemon: [], singleMon: {}};
 function pokeReducer(state = intitialState, action) {
     switch(action.type) {
@@ -16,6 +16,9 @@ function pokeReducer(state = intitialState, action) {
             let myNewPokemonList = state.mypokemon;
             myNewPokemonList.push(new_pokemon);
             return { ...state, mypokemon: myNewPokemonList }
+        case DELETE_POKEMON:
+            let filteredlist = state.mypokemon.filter(pokemon => pokemon.id !== action.payload.id )
+            return { ...state, mypokemon: filteredlist }
         default:
             return state;
     }
