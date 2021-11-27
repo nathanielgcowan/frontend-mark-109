@@ -6,7 +6,7 @@ import MyPokemon from './components/MyPokemon';
 import TallGrass from './components/TallGrass';
 import ViewPokemon from './components/ViewPokemon';
 import Navigation from './theseComponents/Navigation';
-import "./App.css"
+import BackpackContainer from './theseComponents/BackpackContainer';
 
 export default function App() {
   return (
@@ -19,6 +19,7 @@ export default function App() {
         <Route exact path="/pokedex/:id" render={props => (<ViewPokemon pokeId={props.match.params.id} />)} />
         <Route exact path="/mypokemon"><MyPokemon /></Route>
         <Route exact path="/tallgrass"><TallGrass /></Route>
+        <Route exact path="/backpack"><BackpackContainer /></Route>
       </Switch>
     </div>
   );

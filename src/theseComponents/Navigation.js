@@ -9,7 +9,8 @@ export default class Navigation extends React.Component {
                     <Link className="Nav__" to="/">Home</Link>{' '}
                     <Link className="Nav__" to="/pokedex">Pokedex</Link>{' '}
                     <Link className="Nav__" to="/mypokemon">My Pokemon</Link>{' '}
-                    <Link className="Nav__" to="/tallgrass">Tall Grass</Link>
+                    <Link className="Nav__" to="/tallgrass">Tall Grass</Link>{ ' '}
+                    <Link className="Nav__" to="/backpack">Backpack</Link>
                 </div>
             </nav>
         );
