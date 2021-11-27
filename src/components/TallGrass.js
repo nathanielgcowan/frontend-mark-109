@@ -17,7 +17,7 @@ class TallGrass extends Component {
         this.onSubmit = this.onSubmit.bind(this);
     }
     // Lifecycle
-    UNSAFE_componentWillMount(){
+    componentDidMount(){
         this.props.fetchPokemon();
         this.props.fetchSinglePokemon(Math.floor(Math.random()*150));
     }

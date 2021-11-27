@@ -1,4 +1,5 @@
 import React from 'react';
+{/* <Link>View Berry</Link> */}
 
 const Berry = (props) => {
     return(
