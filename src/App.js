@@ -7,7 +7,7 @@ import TallGrass from './components/TallGrass';
 import ViewPokemon from './components/ViewPokemon';
 import Navigation from './theseComponents/Navigation';
 import BackpackContainer from './theseComponents/BackpackContainer';
-
+import './App.css';
 export default function App() {
   return (
     <div>

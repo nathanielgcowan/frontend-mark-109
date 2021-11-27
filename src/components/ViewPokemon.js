@@ -4,7 +4,7 @@ import { fetchSinglePokemon } from '../actions/pokeActions';
 import { Link } from 'react-router-dom';
 
 class ViewPokemon extends Component {
-    componentWillMount() {
+    componentDidMount() {
         this.props.fetchSinglePokemon(this.props.pokeId);
     }
     render() {
