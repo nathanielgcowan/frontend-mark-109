@@ -3,6 +3,7 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { fetchPokemon } from '../actions/pokeActions'
 import { Link } from 'react-router-dom';
+import PokeList from './PokeList';
 
 class Pokedex extends Component {
     componentDidMount(){
@@ -17,13 +18,12 @@ class Pokedex extends Component {
         let listOfPokemon = this.props.pokemon.results.map( pokemon => {
             const urlarray = pokemon.url.split("/")
             const id = urlarray[urlarray.length-2]
-            console.log(id)
             return (
-                <div key={id}>
-                    <p>{pokemon.name}</p>
-                    <Link to={`/pokedex/${id}`}>View Pokemon</Link>
-
-                </div>
+                // <div key={id} style={{backgroundColor:"white"}}>
+                //     <p>{pokemon.name}</p>
+                //     <Link to={`/pokedex/${id}`}>View Pokemon</Link>
+                // </div>
+                <PokeList key={pokemon.id} name={pokemon.name} />
             );
         })
         return (

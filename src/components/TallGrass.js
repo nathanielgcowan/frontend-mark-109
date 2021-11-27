@@ -52,7 +52,7 @@ class TallGrass extends Component {
             return(
                 <div>
                     <Button onClick={this.walkInGrass}>🌿</Button>
-                    <form>
+                    <form style={{background:"green"}}>
                         <Button onClick={this.onSubmit}>Catch Pokemon</Button>
                         <p><img src={this.props.singleMon.sprites.front_default} alt=""/></p>{' '}
                         <p>Name: { this.props.singleMon.name }</p>{' '}

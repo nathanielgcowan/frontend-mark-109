@@ -1,8 +1,10 @@
-import { FETCH_BERRIES, FETCH_BERRY } from '../actions/types';
+import { FETCH_BERRIES, FETCH_BERRY, FETCH_ITEMS, FETCH_ITEM } from '../actions/types';
 
 const initialState = { 
     berries: [],
     berry: {},
+    items: [],
+    item: {},
     mybackpacks: [],
     thisbackpack: {}
 };
@@ -13,6 +15,10 @@ function backpackReducer( state = initialState, action) {
             return { ...state, berries: action.payload };
         case FETCH_BERRY:
             return { ...state, berry: action.payload }
+        case FETCH_ITEMS:
+            return { ...state, items: action.payload };
+        case FETCH_ITEM:
+            return { ...state, item: action.payload }
         default:
             return state;    
     }

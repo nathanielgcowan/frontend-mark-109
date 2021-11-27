@@ -1,6 +1,6 @@
 import React from 'react';
 
-const Berry = (props) => {
+const Item = (props) => {
     const style = {
         border: "1px solid black",
         borderRadius: "5px",
@@ -9,13 +9,13 @@ const Berry = (props) => {
         padding: "10px",
         display: "flex",
         flexDirection: "column",
-        backgroundColor: "cornsilk"
+        backgroundColor: "floralwhite"
     }
-    return(
+    return (
         <div style={style}>
             {props.name}
         </div>
     )
 }
 
-export default Berry;
+export default Item;

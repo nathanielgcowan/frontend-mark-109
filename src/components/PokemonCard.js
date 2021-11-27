@@ -4,7 +4,7 @@ import { Link } from 'react-router-dom';
 
 const PokemonCard = (props) => {
     const card = {
-        border: "1px solid black",
+        border: "2px solid yellow",
         borderRadius: "5px",
         margin: "5px",
         minWidth: "200px",

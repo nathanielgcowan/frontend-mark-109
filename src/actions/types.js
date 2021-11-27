@@ -6,3 +6,6 @@ export const DELETE_POKEMON = 'DELETE_POKEMON';
 
 export const FETCH_BERRIES = 'FETCH_BERRIES';
 export const FETCH_BERRY = 'FETCH_BERRY';
+
+export const FETCH_ITEMS = 'FETCH_ITEMS';
+export const FETCH_ITEM = 'FETCH_ITEM';
