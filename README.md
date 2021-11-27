@@ -1,6 +1,19 @@
-# Getting safsafte React App
+# PokeDex | Flatiron Project
+PokeDex is one of my Flatiron Projects.
+[backend](https://github.com/nathanielgcowan/backend-mark-109)
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+
+# Installation
+Use
+```
+git@github.com:nathanielgcowan/frontend-mark-109.git
+```
+# Contributing
+Pull requests are welcome. If you have a question, please open a issue for discussion.
+
+## License
+[MIT](https://choosealicense.com/licenses/mit/)
 
 ## Available Scripts
 
