@@ -2,8 +2,8 @@ import React from 'react';
 import { Link, Route, Switch } from "react-router-dom";
 import Home from './components/Home';
 import Pokedex from './components/Pokedex';
-import MyPokemon from './components/MyPokemon';
-import TallGrass from './components/TallGrass';
+import MyPokemonContainer from './components/MyPokemonContainer';
+import TallGrassContainer from './components/TallGrassContainer';
 import ViewPokemon from './components/ViewPokemon';
 import Navigation from './theseComponents/Navigation';
 import BackpackContainer from './theseComponents/BackpackContainer';
@@ -18,8 +18,8 @@ export default function App() {
         <Route exact path="/"><Home /></Route>
         <Route exact path="/pokedex"><Pokedex /></Route>
         <Route exact path="/pokedex/:id" render={props => (<ViewPokemon pokeId={props.match.params.id} />)} />
-        <Route exact path="/mypokemon"><MyPokemon /></Route>
-        <Route exact path="/tallgrass"><TallGrass /></Route>
+        <Route exact path="/mypokemon"><MyPokemonContainer /></Route>
+        <Route exact path="/tallgrass"><TallGrassContainer /></Route>
         <Route exact path="/backpack"><BackpackContainer /></Route>
       </Switch>
     </div>

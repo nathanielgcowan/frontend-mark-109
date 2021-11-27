@@ -4,7 +4,7 @@ import { withRouter } from 'react-router';
 import { fetchMyPokemon, deletePokemon } from '../actions/pokeActions';
 import PokemonCard from './PokemonCard';
 
-class MyPokemon extends Component {
+class MyPokemonContainer extends Component {
     componentWillMount(){
         this.props.fetchMyPokemon();
     }
@@ -31,4 +31,4 @@ const mapStateToProps = state => ({
     mypokemon: state.combineRed.mypokemon
 });
 
-export default connect(mapStateToProps, { fetchMyPokemon, deletePokemon })(MyPokemon);
+export default connect(mapStateToProps, { fetchMyPokemon, deletePokemon })(MyPokemonContainer);
