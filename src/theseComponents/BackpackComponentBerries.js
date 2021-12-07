@@ -1,6 +1,6 @@
-import React, { Component } from 'react'
+import React, { PureComponent } from 'react'
 
-export default class BackpackComponentBerries extends Component {
+export default class BackpackComponentBerries extends PureComponent {
     render () {
         return (
             <>
@@ -9,3 +9,6 @@ export default class BackpackComponentBerries extends Component {
         )
     }
 }
+
+// Pure Components perform comparisons between old and new state and props.
+// https://learning.flatironschool.com/courses/1883/pages/types-of-components?module_item_id=259634

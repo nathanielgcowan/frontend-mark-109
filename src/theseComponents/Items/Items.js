@@ -1,7 +1,13 @@
 import React from 'react'
+import Item from './Item'
 
-const Items = (props) => {
-    console.log(props.items)
-    return ( <> { props.items.map(item => { return (<p>{ item.name }</p>) }) } </> )}
+const Items = (props) => { 
+    return ( <> { props.items.map(item => { 
+        return (<p><Item name={item.name}/></p>)
+    }) } </> )}
 
 export default Items;
+
+
+// Functional Component - goes through less React checks. Gives you a small performance boost.
+// https://learning.flatironschool.com/courses/1883/pages/types-of-components?module_item_id=259634

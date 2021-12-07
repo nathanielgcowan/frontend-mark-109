@@ -14,11 +14,10 @@ class BackpackComponentItems extends Component {
     render () {
         // console.log(this.props.items.results)
         if(!this.props.items.results) { return <p>Items Not Found</p>}
-        let listOfItems = this.props.items.results
 
         return (<>
                     <h3>BackpackComponentItems</h3>
-                    <Items items={ listOfItems }/>
+                    <Items items={ this.props.items.results }/>
                 </>)
     }
 }
@@ -28,3 +27,6 @@ const mapStateToProps = state => { return { items: state.combineRedTwo.items }}
 const mapDispatchToProps = dispatch => { return { fetchingItems: (item) => dispatch(fetchItems(item)) }}
 
 export default connect(mapStateToProps, mapDispatchToProps )(BackpackComponentItems);
+
+// Class Component - fully featured React component
+// https://learning.flatironschool.com/courses/1883/pages/types-of-components?module_item_id=259634
