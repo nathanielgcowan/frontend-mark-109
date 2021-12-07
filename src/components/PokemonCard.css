@@ -1,0 +1,13 @@
+.card {
+    border: 2px solid yellow;
+    border-radius: 5px;
+    margin: 5px;
+    min-width: 200px;
+    padding: 10px;
+    display: flex;
+    flex-direction: column;
+    background-color: white;
+}
+.dark .card {
+    background-color: #CCCCCC;
+}

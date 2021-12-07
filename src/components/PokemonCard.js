@@ -1,21 +1,13 @@
 import React from 'react'
 import Button from './Button';
 import { Link } from 'react-router-dom';
+import './PokemonCard.css'
 
 const PokemonCard = (props) => {
-    const card = {
-        border: "2px solid yellow",
-        borderRadius: "5px",
-        margin: "5px",
-        minWidth: "200px",
-        padding: "10px",
-        display: "flex",
-        flexDirection: "column",
-        backgroundColor: "white"
-    }
+
 
     return (
-        <div key={props.pokemon.id} className="card" style={card}>
+        <div key={props.pokemon.id} className="card">
         <p style={{textTransform:"capitalize"}}>{props.pokemon.name}</p>
         <img src={props.pokemon.image} alt=""/>
         <p>{props.pokemon.pokemontype}</p>

@@ -5,7 +5,7 @@ import { fetchMyPokemon, deletePokemon } from '../actions/pokeActions';
 import PokemonCard from './PokemonCard';
 
 class MyPokemonContainer extends Component {
-    componentWillMount(){
+    componentDidMount(){
         this.props.fetchMyPokemon();
     }
     
