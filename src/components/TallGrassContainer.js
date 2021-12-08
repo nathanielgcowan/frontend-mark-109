@@ -17,6 +17,8 @@ class TallGrassContainer extends Component {
         this.handleThrowPokeBall = this.handleThrowPokeBall.bind(this);
         this.onSubmit = this.onSubmit.bind(this);
     }
+
+    // P
     // Lifecycle
     componentDidMount(){
         this.props.fetchPokemon();
@@ -65,10 +67,12 @@ class TallGrassContainer extends Component {
         
     }
 }
+// attributes
 
 // State
 const mapStateToProps = state => ({ 
-    pokemon: state.combineRed.pokemon, singleMon: state.combineRed.singleMon});
+    pokemon: state.combineRed.pokemon,
+    singleMon: state.combineRed.singleMon});
 
 // Export
 export default connect(mapStateToProps, { fetchPokemon, fetchSinglePokemon, newPokemon })(TallGrassContainer);

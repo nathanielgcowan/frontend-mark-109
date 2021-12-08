@@ -12,16 +12,6 @@ export const fetchBerries = () => dispatch => {
         )
 }
 
-export const fetchBerry = id => dispatch => {
-    fetch(`https://pokeapi.co/api/v2/berry/${id}`)
-    .then( response => response.json())
-    .then( berry =>
-        dispatch({
-            type: FETCH_BERRY,
-            payload: berry
-        }))
-}
-
 export const fetchItems = () => dispatch => {
     fetch('https://pokeapi.co/api/v2/item/')
     .then(response => response.json())

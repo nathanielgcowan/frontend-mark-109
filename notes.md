@@ -5,6 +5,8 @@ Follow the instructions on this repo to setup the generator: create-react-app (L
 
 [*] Your app should have one HTML page to render your react-redux application
 
+[] 2 container components
+
 [*] There should be 5 stateless components
 
 [*] There should be 3 routes
