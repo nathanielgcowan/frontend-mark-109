@@ -10,71 +10,86 @@ class BackpackComponentItems extends Component {
     constructor() {
         super();
         this.state = {
+        name: "",
+        amount: 0,
+        cardtext: "",
+        print: "",
+        ereaderData: "",
+        releaseInformation: "",
         count: 0,
-        comment: "",
         callbackone: 0,
         siblingNumber: 0,
         parentToChild: 1,
         toggled: false,
-        amount: 0,
         color: ""
         };
     }
 
 //   our add methods makes use of the 'setState' method, which is whay we use to alter state
     add = () => {
-        let newCount = this.state.count + 1;
-        console.log(`Before : ${this.state.count}`);
-        this.setState({ count: newCount }, () => {
-            console.log(`Inside: ${this.state.count}`);
+        let newAmount = this.state.amount + 1;
+            console.log(`Before : ${this.state.amount }`);
+        this.setState({ amount: newAmount }, () => {
+            console.log(`Inside: ${this.state.amount}`);
         });
-        console.log(`After: ${this.state.count}`);
+            console.log(`After: ${this.state.amount}`);
     };
     subtract = () => {
-        let lessCount = this.state.count -1;
-        console.log(`Before: ${this.state.count}`)
-        this.setState({ count: lessCount }, () => {
-            console.log(`Inside: ${this.state.count}`);
+        let lessAmount = this.state.amount -1;
+            console.log(`Before: ${this.state.amount}`)
+        this.setState({ amount: lessAmount }, () => {
+            console.log(`Inside: ${this.state.amount}`);
         });
-        console.log(`After: ${this.state.count}`);
+            console.log(`After: ${this.state.amount}`);
+    };
+    reset = () => {
+        let resetNumber = this.state.amount = 0;
+            console.log(`Before: ${this.state.amount}`)
+        this.setState({ amount: 0 }, () => {
+            console.log(`Inside: ${this.state.amount}`);
+        });
+            console.log(`After: ${this.state.amount}`);
     };
     handleChange = (event) => {
-    this.setState({ comment: event.target.value });
-    console.log(`After: ${this.state.comment}`);
+            console.log(`Before: ${this.state.cardtext}`)
+        this.setState({ cardtext: event.target.value }, () => { 
+            console.log(`Inside: ${this.state.cardtext}`)
+        });
+            console.log(`After: ${this.state.cardtext}`);
     };
     handleCallbackOne = (event) => {
-    this.setState({
-      callbackone: this.state.callbackone + 2,
-    });
+        this.setState({
+            callbackone: this.state.callbackone + 2,
+        });
     };
     handleSiblingNumber = () => {
-    this.setState({
-      siblingNumber: this.state.siblingNumber + 0.5,
-    });
+        this.setState({
+            siblingNumber: this.state.siblingNumber + 0.5,
+        });
     };
     handleParentToChild = (event) => {
-    this.setState({
-      parentToChild: this.state.parentToChild + 3,
-    });
+        this.setState({
+            parentToChild: this.state.parentToChild + 3,
+        });
     };
     handleClick = () => {
-    this.setState((previousState) => {
-      return {
-        toggled: !previousState.toggled,
-      };
-    });
+        this.setState((previousState) => {
+                return {
+                toggled: !previousState.toggled,
+            };
+        });
     };
     handleSubmit = event => {
         event.preventDefault();
-        console.log('handleSubmit', ' We will make a POST request here')
+            console.log('handleSubmit', ' We will make a POST request here')
         const item = {
             amount: this.state.amount
         }
-        console.log(item);
+            console.log(item);
     }
     // Lifecycle
     static getDerivedStateFromProps(state) {
-        console.log('getDerivedStateFromProps')
+            console.log('getDerivedStateFromProps')
         return {
             color: "#FFFFFF",
         };
@@ -136,25 +151,33 @@ class BackpackComponentItems extends Component {
             <>  
                 <form onSubmit={this.handleSubmit} style={{backgroundColor: "white"}}>
                     <h4> Add an Item to Backpack </h4>
-                    <label>Count:{this.state.count}</label>{' '}
-                        <button type="button" onClick={this.add}>Add to Amount</button>{' '}
+                    <label>Name:</label>
+                        <input type="text" placeholder="Name" value={this.state.name} onChange={this.handleChange} /><br />
+                    <label>Amount:{' '}{this.state.amount}</label>{' '}
+                        <button onClick={this.startAmount}>Start</button>{' '}
+                        <button onClick={this.stopAmount}>Stop</button>{' '}
+                        <button type="button" onClick={this.add}>Add</button>{' '}
                         <button type="button" onClick={this.subtract}>Subtract</button>{' '}
-                        <button onClick={this.changeCardColor}>Change Nothing</button>
-                    <br />
-                    <input type="text" value={this.state.comment} onChange={this.handleChange} />
-                    <p>Callback One: {this.state.callbackone}</p>
-                    <p>siblingNumber: {this.state.siblingNumber} </p>
-                    <button onClick={this.handleParentToChild}>Parent To Child</button>
-                    <button onClick={this.handleClick}>Toggle</button>
-                    <>{this.state.toggled ? "ON" : "OFF"}</>
+                        <button type="button" onClick={this.reset}>Reset</button>{' '}<br />
+                    <label>Print:</label>
+                        <input type="text" placeholder="Print" value={ this.state.print } 
+                            onChange={this.handleChange} /><br />
+                    <label>Card Text:</label>{' '}
+                        <input type="text" placeholder="Card Text"
+                            value={this.state.cardtext} onChange={this.handleChange} /><br />
+                    <label>Callback One: {this.state.callbackone}</label><br />
+                    <label>Sibling Component: {' '}{this.state.siblingNumber}</label><br />
+                    <label>Handle Parent To Child</label>
+                        <button onClick={this.handleParentToChild}>Parent To Child</button><br />
+                    <label>Toggle: {this.state.toggled ? "ON" : "OFF"}</label>{' '}
+                        <button onClick={this.handleClick}>Toggle</button>
                     <section className="Amount" style={{ background: color }}>
-                        <h1>{ this.state.amount }</h1>
-                        <button onClick={this.stopAmount}>Stop</button>
-                        <button onClick={this.startAmount}>Start</button>
+                        <p>{ this.state.amount }</p>
                     </section>
                     {/* Submit */}
                     <button type="submit">Submit</button>
                 </form>
+                    <button onClick={this.changeCardColor}>Change and Do Nothing</button><br />
                 <Items
                         items={this.props.items.results}
                         handleCallbackOne={this.handleCallbackOne}
