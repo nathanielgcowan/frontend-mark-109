@@ -16,19 +16,27 @@ class BackpackComponentItems extends Component {
         siblingNumber: 0,
         parentToChild: 1,
         toggled: false,
-        time: 0,
+        amount: 0,
         color: ""
         };
     }
 
 //   our add methods makes use of the 'setState' method, which is whay we use to alter state
     add = () => {
-    let newCount = this.state.count + 1;
-    console.log(`Before : ${this.state.count}`);
-    this.setState({ count: newCount }, () => {
-      console.log(`Inside: ${this.state.count}`);
-    });
-    console.log(`After: ${this.state.count}`);
+        let newCount = this.state.count + 1;
+        console.log(`Before : ${this.state.count}`);
+        this.setState({ count: newCount }, () => {
+            console.log(`Inside: ${this.state.count}`);
+        });
+        console.log(`After: ${this.state.count}`);
+    };
+    subtract = () => {
+        let lessCount = this.state.count -1;
+        console.log(`Before: ${this.state.count}`)
+        this.setState({ count: lessCount }, () => {
+            console.log(`Inside: ${this.state.count}`);
+        });
+        console.log(`After: ${this.state.count}`);
     };
     handleChange = (event) => {
     this.setState({ comment: event.target.value });
@@ -59,6 +67,10 @@ class BackpackComponentItems extends Component {
     handleSubmit = event => {
         event.preventDefault();
         console.log('handleSubmit', ' We will make a POST request here')
+        const item = {
+            amount: this.state.amount
+        }
+        console.log(item);
     }
     // Lifecycle
     static getDerivedStateFromProps(state) {
@@ -76,44 +88,44 @@ class BackpackComponentItems extends Component {
         // this.props.fetchItems();
         this.props.fetchingItems();
         // updater, [callback]
-        console.log('Clock','componentDidMount')
+        console.log('Amount','componentDidMount')
     }
     getSnapshotBeforeUpdate() {
-        console.log('Clock', 'getSnapshotBeforeUpdate')
+        console.log('Amount', 'getSnapshotBeforeUpdate')
     }
     // shouldComponentUpdate is useful in stopping unwanted component updates and is mainly used for performance enhancement.
     shouldComponentUpdate() {
-        console.log('Clock', 'shouldComponentUpdate')
+        console.log('Amount', 'shouldComponentUpdate')
         return true;
     }
     // componentDidUpdate is useful for DOM manipulation and updating 3rd party libraries.
     componentDidUpdate() {
-        console.log('Clock', 'componentDidUpdate')
+        console.log('Amount', 'componentDidUpdate')
     }
     componentWillUnmount() {
         clearInterval(this.interval);
-        alert("This time is about to be upmounted")
-        console.log('Clock', 'componentWillUnmount')
+        // alert("This amount is about to be unmounted")
+        console.log('Amount', 'componentWillUnmount')
     }
 
     // Math.floor(Math.random() * 16777215).toString(16)
-    // Clock Functions
-    clockTick = () => {
+    // Item Amount Functions
+    amountTick = () => {
         this.setState({
-            time : this.state.time + 1
+            amount : this.state.amount + 1
         })
     }
-    stopClock = () => {
+    stopAmount = () => {
         clearInterval(this.interval)
-        console.log('Clock','Stop')
+        console.log('Amount','Stop')
     }
-    startClock = () => {
-        this.interval = setInterval(this.clockTick, 1000)
-        console.log('Clock','Start')
+    startAmount = () => {
+        this.interval = setInterval(this.amountTick, 1000)
+        console.log('Amount','Start')
     }
 
     render() {
-        console.log('Clock','Render')
+        console.log('Amount','Render')
         if (!this.props.items.results) {
         return <p>Items Not Found</p>; }
 
@@ -121,39 +133,35 @@ class BackpackComponentItems extends Component {
         console.log(color)
 
     return (
-        <>  
-            <form onSubmit={this.handleSubmit}>
-                Formfff
-                <button type="submit">Submit</button>
-            </form>
-            <h3>BackpackComponentItems</h3>
-            <p>Count: {this.state.count}</p>
-            <button onClick={this.add}>Add</button>
-            <button onClick={this.changeCardColor}>Change Nothing</button>
-            <br />
-            <input
-                type="text"
-                value={this.state.comment}
-                onChange={this.handleChange}
-            />
-            <p>Callback One: {this.state.callbackone}</p>
-            <p>siblingNumber: {this.state.siblingNumber} </p>
-            <button onClick={this.handleParentToChild}>Parent To Child</button>
-            <button onClick={this.handleClick}>Toggle</button>
-            <>{this.state.toggled ? "ON" : "OFF"}</>
-            <section className="Timer" style={{ background: color }}>
-                <h1>{ this.state.time }</h1>
-                <button onClick={this.stopClock}>Stop</button>
-                <button onClick={this.startClock}>Start</button>
-            </section>
-            <Items
-                items={this.props.items.results}
-                handleCallbackOne={this.handleCallbackOne}
-                handleSiblingNumber={this.handleSiblingNumber}
-                siblingNumber={this.state.siblingNumber}
-                parentToChild={this.state.parentToChild}
-            />
-        </>
+            <>  
+                <form onSubmit={this.handleSubmit} style={{backgroundColor: "white"}}>
+                    <h4> Add an Item to Backpack </h4>
+                    <label>Count:{this.state.count}</label>{' '}
+                        <button type="button" onClick={this.add}>Add to Amount</button>{' '}
+                        <button type="button" onClick={this.subtract}>Subtract</button>{' '}
+                        <button onClick={this.changeCardColor}>Change Nothing</button>
+                    <br />
+                    <input type="text" value={this.state.comment} onChange={this.handleChange} />
+                    <p>Callback One: {this.state.callbackone}</p>
+                    <p>siblingNumber: {this.state.siblingNumber} </p>
+                    <button onClick={this.handleParentToChild}>Parent To Child</button>
+                    <button onClick={this.handleClick}>Toggle</button>
+                    <>{this.state.toggled ? "ON" : "OFF"}</>
+                    <section className="Amount" style={{ background: color }}>
+                        <h1>{ this.state.amount }</h1>
+                        <button onClick={this.stopAmount}>Stop</button>
+                        <button onClick={this.startAmount}>Start</button>
+                    </section>
+                    {/* Submit */}
+                    <button type="submit">Submit</button>
+                </form>
+                <Items
+                        items={this.props.items.results}
+                        handleCallbackOne={this.handleCallbackOne}
+                        handleSiblingNumber={this.handleSiblingNumber}
+                        siblingNumber={this.state.siblingNumber}
+                        parentToChild={this.state.parentToChild} />
+            </>
         );
     }
 }
