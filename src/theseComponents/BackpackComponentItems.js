@@ -56,7 +56,8 @@ class BackpackComponentItems extends Component {
       };
     });
     };
-    handleSubmit = () => {
+    handleSubmit = event => {
+        event.preventDefault();
         console.log('handleSubmit', ' We will make a POST request here')
     }
     // Lifecycle
@@ -121,10 +122,9 @@ class BackpackComponentItems extends Component {
 
     return (
         <>  
-            <form onsubmit={this.handleSubmit}>
-                Form
-                <input type="text" value={this.state.comment} onChange={this.handleChange} />
-                <input type="submit" />
+            <form onSubmit={this.handleSubmit}>
+                Formfff
+                <button type="submit">Submit</button>
             </form>
             <h3>BackpackComponentItems</h3>
             <p>Count: {this.state.count}</p>
