@@ -1,7 +1,7 @@
 import React from 'react';
 
 const Item = (props) => {
-    return (<div >
+    return (<div key={props.id}>
                 { props.name }
                 <button onClick={props.handleCallbackOne}>Add to count one</button>
                 <button onClick={props.handleSiblingNumber}>Handle Sibling Number</button>

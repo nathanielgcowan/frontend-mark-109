@@ -6,7 +6,7 @@ const Button = (props) => {
         borderRadius: "8px",
         margin: "5px",
         padding: "8px",
-        display: "flex",
+        // display: "flex",
         backgroundColor: "white"
     }
     return(

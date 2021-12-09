@@ -1,6 +1,8 @@
 import React, { Component } from "react";
 import { connect } from "react-redux";
 import { fetchItems } from "../actions/backpackActions";
+import Button from '../components/Button';
+import '../App.css'
 // Items
 import Items from "./Items/Display/Items";
 
@@ -9,19 +11,19 @@ class BackpackComponentItems extends Component {
   // the extends keyword.
     constructor() {
         super();
-        this.state = {
-        name: "",
-        amount: 0,
-        cardtext: "",
-        print: "",
-        ereaderData: "",
-        releaseInformation: "",
-        count: 0,
-        callbackone: 0,
-        siblingNumber: 0,
-        parentToChild: 1,
-        toggled: false,
-        color: ""
+            this.state = {
+                name: "",
+                amount: 0,
+                cardtext: "",
+                print: "",
+                ereaderData: "",
+                releaseInformation: "",
+                count: 0,
+                callbackone: 0,
+                siblingNumber: 0,
+                parentToChild: 1,
+                toggled: false,
+                color: ""
         };
     }
 
@@ -51,11 +53,17 @@ class BackpackComponentItems extends Component {
             console.log(`After: ${this.state.amount}`);
     };
     handleChange = (event) => {
-            console.log(`Before: ${this.state.cardtext}`)
-        this.setState({ cardtext: event.target.value }, () => { 
-            console.log(`Inside: ${this.state.cardtext}`)
+            console.log(`Before: Name = ${this.state.name}, Print = ${this.state.print}, 
+                        Card Text = ${this.state.cardtext}, E-Reader Data = ${this.state.ereaderData},
+                        Release Information = ${this.state.releaseInformation}`)
+        this.setState({ [event.target.name]: event.target.value }, () => { 
+            console.log(`Inside: Name = ${this.state.name}, Print = ${this.state.print}, 
+                        Card Text = ${this.state.cardtext}, E-Reader Data = ${this.state.ereaderData},
+                        Release Information = ${this.state.releaseInformation}`)
         });
-            console.log(`After: ${this.state.cardtext}`);
+            console.log(`After: Name = ${this.state.name}, Print = ${this.state.print}, 
+                        Card Text = ${this.state.cardtext}, E-Reader Data = ${this.state.ereaderData},
+                        Release Information = ${this.state.releaseInformation}`)
     };
     handleCallbackOne = (event) => {
         this.setState({
@@ -83,7 +91,12 @@ class BackpackComponentItems extends Component {
         event.preventDefault();
             console.log('handleSubmit', ' We will make a POST request here')
         const item = {
-            amount: this.state.amount
+            name: this.state.name,
+            amount: this.state.amount,
+            cardtext: this.state.cardtext,
+            print: this.state.print,
+            ereaderData: this.state.ereaderData,
+            releaseInformation: this.state.releaseInformation
         }
             console.log(item);
     }
@@ -105,9 +118,9 @@ class BackpackComponentItems extends Component {
         // updater, [callback]
         console.log('Amount','componentDidMount')
     }
-    getSnapshotBeforeUpdate() {
-        console.log('Amount', 'getSnapshotBeforeUpdate')
-    }
+    // getSnapshotBeforeUpdate() {
+    //     console.log('Amount', 'getSnapshotBeforeUpdate')
+    // }
     // shouldComponentUpdate is useful in stopping unwanted component updates and is mainly used for performance enhancement.
     shouldComponentUpdate() {
         console.log('Amount', 'shouldComponentUpdate')
@@ -149,35 +162,42 @@ class BackpackComponentItems extends Component {
 
     return (
             <>  
-                <form onSubmit={this.handleSubmit} style={{backgroundColor: "white"}}>
+                <form onSubmit={this.handleSubmit} style={{ 
+                    backgroundColor: "white", border:"1px solid black", borderRadius: "8px"}}>
                     <h4> Add an Item to Backpack </h4>
                     <label>Name:</label>
-                        <input type="text" placeholder="Name" value={this.state.name} onChange={this.handleChange} /><br />
+                        <input type="text" name="name"placeholder="Item Name" value={this.state.name} onChange={this.handleChange} /><br />
                     <label>Amount:{' '}{this.state.amount}</label>{' '}
-                        <button onClick={this.startAmount}>Start</button>{' '}
-                        <button onClick={this.stopAmount}>Stop</button>{' '}
-                        <button type="button" onClick={this.add}>Add</button>{' '}
-                        <button type="button" onClick={this.subtract}>Subtract</button>{' '}
-                        <button type="button" onClick={this.reset}>Reset</button>{' '}<br />
+                        <Button onClick={this.startAmount}>Start</Button>{' '}
+                        <Button onClick={this.stopAmount}>Stop</Button>{' '}
+                        <Button type="button" onClick={this.add}>Add</Button>{' '}
+                        <Button type="button" onClick={this.subtract}>Subtract</Button>{' '}
+                        <Button type="button" onClick={this.reset}>Reset</Button>{' '}<br />
                     <label>Print:</label>
-                        <input type="text" placeholder="Print" value={ this.state.print } 
+                        <input type="text" name="print" placeholder="Print" value={ this.state.print } 
                             onChange={this.handleChange} /><br />
                     <label>Card Text:</label>{' '}
-                        <input type="text" placeholder="Card Text"
+                        <input type="text" name="cardtext" placeholder="Card Text"
                             value={this.state.cardtext} onChange={this.handleChange} /><br />
+                    <label>E-Reader Data:</label>{' '}
+                        <input type="text" name="ereaderData" placeholder="E-Reader Data"
+                            value={this.state.ereaderData} onChange={this.handleChange} /><br />
+                    <label>Release Information:</label>{' '}
+                        <input type="text" name="releaseInformation" placeholder="Release Information"
+                            value={this.state.releaseInformation} onChange={this.handleChange} /><br />
+                    {/* Submit */}
+                    <Button type="submit">Submit</Button>
+                </form><br />
+                <section className="Amount" style={{ 
+                    backgroundColor: "white", border:"1px solid black", borderRadius: "8px"}}>
                     <label>Callback One: {this.state.callbackone}</label><br />
                     <label>Sibling Component: {' '}{this.state.siblingNumber}</label><br />
                     <label>Handle Parent To Child</label>
-                        <button onClick={this.handleParentToChild}>Parent To Child</button><br />
+                        <Button type="button" onClick={this.handleParentToChild}>Parent To Child</Button><br />
                     <label>Toggle: {this.state.toggled ? "ON" : "OFF"}</label>{' '}
-                        <button onClick={this.handleClick}>Toggle</button>
-                    <section className="Amount" style={{ background: color }}>
-                        <p>{ this.state.amount }</p>
-                    </section>
-                    {/* Submit */}
-                    <button type="submit">Submit</button>
-                </form>
-                    <button onClick={this.changeCardColor}>Change and Do Nothing</button><br />
+                        <Button type="button" onClick={this.handleClick}>Toggle</Button>
+                </section>
+                <Button onClick={this.changeCardColor}>Change and Do Nothing</Button><br />
                 <Items
                         items={this.props.items.results}
                         handleCallbackOne={this.handleCallbackOne}

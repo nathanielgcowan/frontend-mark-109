@@ -3,14 +3,14 @@ import Item from './Item'
 
 const Items = (props) => {
     return ( <> { props.items.map(item => { 
-        return (<p><Item
+        return (<div key={props.id}><Item
                     name={item.name} 
                     handleCallbackOne={props.handleCallbackOne} 
                     handleSiblingNumber={props.handleSiblingNumber} 
                     siblingNumber={ props.siblingNumber }
                     parentToChild={ props.parentToChild }
                     />
-        </p>)
+        </div>)
     }) } </> )}
 
 export default Items;
