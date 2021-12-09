@@ -14,10 +14,6 @@ class BackpackComponentBerries extends Component {
             this.state = {
                 name: "",
                 amount: 0,
-                cardtext: "",
-                print: "",
-                ereaderData: "",
-                releaseInformation: "",
                 count: 0,
                 callbackone: 0,
                 siblingNumber: 0,
@@ -64,17 +60,26 @@ class BackpackComponentBerries extends Component {
             console.log(`After: ${this.state.amount}`);
     };
     handleChange = (event) => {
-            console.log(`Before: Name = ${this.state.name}, Print = ${this.state.print}, 
-                        Card Text = ${this.state.cardtext}, E-Reader Data = ${this.state.ereaderData},
-                        Release Information = ${this.state.releaseInformation}`)
+            console.log(`Before: Name = ${this.state.name}, Amount = ${this.state.amount}, 
+                        Growth Time = ${this.state.growthTime}, Max Harvest = ${this.state.maxHarvest},
+                        Natural Gift Power = ${this.state.naturalGiftPower}, Size = ${this.state.size},
+                        Smoothness = ${this.state.smoothness}, Soil Dryness = ${this.state.soilDryness},
+                        Firmness = ${this.state.firmness}, Potency= ${this.state.potency},
+                        Flavor = ${this.state.flavor}, Natural Gift Type = ${this.state.naturalGiftType}`)
         this.setState({ [event.target.name]: event.target.value }, () => { 
-            console.log(`Inside: Name = ${this.state.name}, Print = ${this.state.print}, 
-                        Card Text = ${this.state.cardtext}, E-Reader Data = ${this.state.ereaderData},
-                        Release Information = ${this.state.releaseInformation}`)
+            console.log(`Inside: Name = ${this.state.name}, Amount = ${this.state.amount}, 
+                        Growth Time = ${this.state.growthTime}, Max Harvest = ${this.state.maxHarvest},
+                        Natural Gift Power = ${this.state.naturalGiftPower}, Size = ${this.state.size},
+                        Smoothness = ${this.state.smoothness}, Soil Dryness = ${this.state.soilDryness},
+                        Firmness = ${this.state.firmness}, Potency= ${this.state.potency},
+                        Flavor = ${this.state.flavor}, Natural Gift Type = ${this.state.naturalGiftType}`)
         });
-            console.log(`After: Name = ${this.state.name}, Print = ${this.state.print}, 
-                        Card Text = ${this.state.cardtext}, E-Reader Data = ${this.state.ereaderData},
-                        Release Information = ${this.state.releaseInformation}`)
+            console.log(`After: Name = ${this.state.name}, Amount = ${this.state.amount}, 
+                        Growth Time = ${this.state.growthTime}, Max Harvest = ${this.state.maxHarvest},
+                        Natural Gift Power = ${this.state.naturalGiftPower}, Size = ${this.state.size},
+                        Smoothness = ${this.state.smoothness}, Soil Dryness = ${this.state.soilDryness},
+                        Firmness = ${this.state.firmness}, Potency= ${this.state.potency},
+                        Flavor = ${this.state.flavor}, Natural Gift Type = ${this.state.naturalGiftType}`)
     };
     handleCallbackOne = (event) => {
         this.setState({
@@ -125,7 +130,7 @@ class BackpackComponentBerries extends Component {
     }
     componentDidMount() {
         // this.props.fetchItems();
-        this.props.fetchingItems();
+        this.props.fetchingBerries();
         // updater, [callback]
         console.log('Amount','componentDidMount')
     }
@@ -165,56 +170,23 @@ class BackpackComponentBerries extends Component {
 
     render() {
         console.log('Amount','Render')
-        if (!this.props.items.results) {
-        return <p>Items Not Found</p>; }
+        if (!this.props.berries.results) {
+        return <p>Berries Not Found</p>; }
 
         let { color } = this.state;
         console.log(color)
 
     return (
-            <>  
+            <>
                 <form onSubmit={this.handleSubmit} style={{ 
                     backgroundColor: "white", border:"1px solid black", borderRadius: "8px"}}>
-                    <h4> Add an Item to Backpack </h4>
+                    <h4> Add an Berry to Backpack </h4>
                     <label>Name:</label>
-                        <input type="text" name="name"placeholder="Item Name" value={this.state.name} onChange={this.handleChange} /><br />
-                    <label>Amount:{' '}{this.state.amount}</label>{' '}
-                        <Button onClick={this.startAmount}>Start</Button>{' '}
-                        <Button onClick={this.stopAmount}>Stop</Button>{' '}
-                        <Button type="button" onClick={this.add}>Add</Button>{' '}
-                        <Button type="button" onClick={this.subtract}>Subtract</Button>{' '}
-                        <Button type="button" onClick={this.reset}>Reset</Button>{' '}<br />
-                    <label>Print:</label>
-                        <input type="text" name="print" placeholder="Print" value={ this.state.print } 
-                            onChange={this.handleChange} /><br />
-                    <label>Card Text:</label>{' '}
-                        <input type="text" name="cardtext" placeholder="Card Text"
-                            value={this.state.cardtext} onChange={this.handleChange} /><br />
-                    <label>E-Reader Data:</label>{' '}
-                        <input type="text" name="ereaderData" placeholder="E-Reader Data"
-                            value={this.state.ereaderData} onChange={this.handleChange} /><br />
-                    <label>Release Information:</label>{' '}
-                        <input type="text" name="releaseInformation" placeholder="Release Information"
-                            value={this.state.releaseInformation} onChange={this.handleChange} /><br />
-                    {/* Submit */}
-                    <Button type="submit">Submit</Button>
-                </form><br />
-                <section className="Amount" style={{ 
-                    backgroundColor: "white", border:"1px solid black", borderRadius: "8px"}}>
-                    <label>Callback One: {this.state.callbackone}</label><br />
-                    <label>Sibling Component: {' '}{this.state.siblingNumber}</label><br />
-                    <label>Handle Parent To Child</label>
-                        <Button type="button" onClick={this.handleParentToChild}>Parent To Child</Button><br />
-                    <label>Toggle: {this.state.toggled ? "ON" : "OFF"}</label>{' '}
-                        <Button type="button" onClick={this.handleClick}>Toggle</Button>
-                </section>
-                <Button onClick={this.changeCardColor}>Change and Do Nothing</Button><br />
-                <form onSubmit={this.handleSubmit} style={{ 
-                    backgroundColor: "white", border:"1px solid black", borderRadius: "8px"}}>
-                    <h4> Add an Item to Backpack </h4>
-                    <label>Name:</label>
-                        <input type="text" name="berryname" placeholder="Berry Name"
-                            value={this.state.berryname} onChange={this.handleChange} /><br />
+                        <input type="text" name="name" placeholder="Name"
+                            value={this.state.name} onChange={this.handleChange} /><br />
+                    <label>Amount:</label>
+                        <input type="number" name="amount" placeholder="Amount"
+                            value={this.state.amount} onChange={this.handleChange} /><br />
                     <label>Growth Time:</label>
                         <input type="number" name="growthTime" placeholder="Growth Time"
                             value={this.state.growthTime} onChange={this.handleChange} /><br />
@@ -247,8 +219,18 @@ class BackpackComponentBerries extends Component {
                             value={this.state.naturalGifyType} onChange={this.handleChange} /><br />
                     <Button type="submit">Submit</Button>
                 </form><br />
+                <section className="Amount" style={{ 
+                    backgroundColor: "white", border:"1px solid black", borderRadius: "8px"}}>
+                    <label>Callback One: {this.state.callbackone}</label><br />
+                    <label>Sibling Component: {' '}{this.state.siblingNumber}</label><br />
+                    <label>Handle Parent To Child</label>
+                        <Button type="button" onClick={this.handleParentToChild}>Parent To Child</Button><br />
+                    <label>Toggle: {this.state.toggled ? "ON" : "OFF"}</label>{' '}
+                        <Button type="button" onClick={this.handleClick}>Toggle</Button>
+                </section>
+                <Button onClick={this.changeCardColor}>Change and Do Nothing</Button><br />
                 <Items
-                        items={this.props.items.results}
+                        items={this.props.berries.results}
                         handleCallbackOne={this.handleCallbackOne}
                         handleSiblingNumber={this.handleSiblingNumber}
                         siblingNumber={this.state.siblingNumber}
@@ -260,13 +242,13 @@ class BackpackComponentBerries extends Component {
 
 const mapStateToProps = (state) => {
     return {
-        items: state.combineRedTwo.items,
+        berries: state.combineRedTwo.berries,
     };
 };
 
 const mapDispatchToProps = (dispatch) => {
     return {
-        fetchingItems: (berry) => dispatch(fetchBerries(berry)),
+        fetchingBerries: (berry) => dispatch(fetchBerries(berry)),
     };
 };
 
